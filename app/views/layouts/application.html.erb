@@ -18,8 +18,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render "Shared/Toster"%>
-    <%= yield %>
+  <body class="bg-gray-900 text-gray-100 min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">📱 MDM Admin</h1>
+      <div>
+        <%= link_to "Enterprises", root_path, class: "text-blue-400 hover:text-blue-600 px-2" %>
+      </div>
+    </nav>
+
+    <main class="p-6">
+      <% if notice %>
+        <p class="bg-green-600 p-2 rounded mb-4"><%= notice %></p>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

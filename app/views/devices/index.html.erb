@@ -1,0 +1,28 @@
+<h2 class="text-xl font-bold mb-4">Devices for <%= @enterprise.name %></h2>
+
+<%= link_to "➕ Enroll Device", new_enterprise_device_path(@enterprise), class: "bg-blue-600 px-4 py-2 rounded mb-4 inline-block" %>
+
+<table class="w-full table-auto border border-gray-700 rounded-lg">
+  <thead class="bg-gray-800">
+    <tr>
+      <th class="p-3">Device ID</th>
+      <th class="p-3">Platform</th>
+      <th class="p-3">Enrolled</th>
+      <th class="p-3">Last Seen</th>
+      <th class="p-3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @devices.each do |d| %>
+      <tr class="border-t border-gray-700">
+        <td class="p-3"><%= d.device_id %></td>
+        <td class="p-3"><%= d.platform.capitalize %></td>
+        <td class="p-3"><%= d.enrolled ? "✅" : "❌" %></td>
+        <td class="p-3"><%= d.last_seen&.strftime("%Y-%m-%d %H:%M") %></td>
+        <td class="p-3 space-x-2">
+          <%= link_to "View", enterprise_device_path(@enterprise, d), class: "text-blue-400" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

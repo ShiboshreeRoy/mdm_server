@@ -64,3 +64,7 @@ gem "sidekiq", "~> 8.0"
 gem "figaro", "~> 1.3"
 gem "devise", "~> 4.9"
 gem "pundit", "~> 2.5"
+
+gem "tailwindcss-ruby", "~> 4.1"
+
+gem "tailwindcss-rails", "~> 4.3"

@@ -1,0 +1,27 @@
+<h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
+
+<h3 class="text-xl font-semibold mb-3">Enterprises</h3>
+<%= link_to "➕ New Enterprise", new_admin_enterprise_path, class: "bg-blue-600 px-4 py-2 rounded mb-4 inline-block" %>
+
+<table class="w-full table-auto border border-gray-700 rounded-lg">
+  <thead class="bg-gray-800">
+    <tr>
+      <th class="p-3">Name</th>
+      <th class="p-3">Provider</th>
+      <th class="p-3">Devices</th>
+      <th class="p-3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enterprises.each do |ent| %>
+      <tr class="border-t border-gray-700">
+        <td class="p-3"><%= ent.name %></td>
+        <td class="p-3"><%= ent.provider.capitalize %></td>
+        <td class="p-3"><%= ent.devices.count %></td>
+        <td class="p-3 space-x-2">
+          <%= link_to "View", admin_enterprise_devices_path(ent), class: "text-blue-400 hover:text-blue-600" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

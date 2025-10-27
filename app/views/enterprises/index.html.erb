@@ -1,0 +1,26 @@
+<h2 class="text-xl font-bold mb-4">Enterprises</h2>
+
+<%= link_to "➕ New Enterprise", new_enterprise_path, class: "bg-blue-600 px-4 py-2 rounded mb-4 inline-block" %>
+
+<table class="w-full table-auto border border-gray-700 rounded-lg">
+  <thead class="bg-gray-800">
+    <tr>
+      <th class="p-3 text-left">Name</th>
+      <th class="p-3 text-left">Provider</th>
+      <th class="p-3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enterprises.each do |ent| %>
+      <tr class="border-t border-gray-700">
+        <td class="p-3"><%= ent.name %></td>
+        <td class="p-3"><%= ent.provider.capitalize %></td>
+        <td class="p-3 space-x-2">
+          <%= link_to "View", enterprise_path(ent), class: "text-blue-400" %>
+          <%= link_to "Edit", edit_enterprise_path(ent), class: "text-yellow-400" %>
+          <%= link_to "Delete", enterprise_path(ent), data: { turbo_method: :delete, confirm: "Are you sure?" }, class: "text-red-400" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

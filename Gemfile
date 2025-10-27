@@ -55,3 +55,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "jwt", "~> 3.1"
+gem "googleauth", "~> 1.15"
+gem "httparty", "~> 0.23.2"
+gem "sidekiq", "~> 8.0"

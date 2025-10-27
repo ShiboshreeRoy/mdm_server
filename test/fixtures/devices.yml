@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enterprise: one
+  device_id: MyString
+  platform: MyString
+  enrolled: false
+  last_seen: 2025-10-27 21:49:46
+  metadata: 
+
+two:
+  enterprise: two
+  device_id: MyString
+  platform: MyString
+  enrolled: false
+  last_seen: 2025-10-27 21:49:46
+  metadata: 

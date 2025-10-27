@@ -12,4 +12,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "enterprises#index"
+
+  resources :enterprises do
+    resources :devices, only: [:index, :show, :new, :create] do
+      post :uninstall, to: "commands#uninstall"
+      post :install, to: "commands#install"
+    end
+  end
 end

@@ -1,0 +1,22 @@
+<h2 class="text-2xl font-bold mb-4">Edit Enterprise</h2>
+
+<%= form_with model: @enterprise, local: true, class: "space-y-4" do |f| %>
+  <div>
+    <%= f.label :name, class: "block mb-1" %>
+    <%= f.text_field :name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full" %>
+  </div>
+
+  <div>
+    <%= f.label :provider, class: "block mb-1" %>
+    <%= f.select :provider, [["Android", "android"], ["Apple", "apple"]], {}, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full" %>
+  </div>
+
+  <div>
+    <%= f.label :credentials, "Service Account JSON / MDM Credentials", class: "block mb-1" %>
+    <%= f.text_area :credentials, rows: 5, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full" %>
+  </div>
+
+  <%= f.submit "Update Enterprise", class: "bg-yellow-600 px-4 py-2 rounded hover:bg-yellow-700" %>
+<% end %>
+
+<%= link_to "← Back to Enterprises", enterprises_path, class: "text-blue-400 mt-4 block" %>

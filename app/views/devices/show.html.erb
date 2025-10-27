@@ -1,0 +1,20 @@
+<h2 class="text-xl font-bold mb-4">Device: <%= @device.device_id %></h2>
+
+<div class="mb-4">
+  <p><b>Platform:</b> <%= @device.platform.capitalize %></p>
+  <p><b>Last Seen:</b> <%= @device.last_seen %></p>
+</div>
+
+<h3 class="text-lg mb-3">Uninstall App</h3>
+<%= form_with url: uninstall_enterprise_device_path(@enterprise, @device), method: :post, local: true do |f| %>
+  <%= f.label :package_name, "Package Name", class: "block mb-2" %>
+  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full mb-3" %>
+  <%= f.submit "Uninstall App", class: "bg-red-600 px-4 py-2 rounded" %>
+<% end %>
+
+<h3 class="text-lg mb-3 mt-6">Install App</h3>
+<%= form_with url: install_enterprise_device_path(@enterprise, @device), method: :post, local: true do |f| %>
+  <%= f.label :package_name, "Package Name", class: "block mb-2" %>
+  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full mb-3" %>
+  <%= f.submit "Install App", class: "bg-green-600 px-4 py-2 rounded" %>
+<% end %>

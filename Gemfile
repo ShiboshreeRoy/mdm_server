@@ -60,3 +60,7 @@ gem "jwt", "~> 3.1"
 gem "googleauth", "~> 1.15"
 gem "httparty", "~> 0.23.2"
 gem "sidekiq", "~> 8.0"
+
+gem "figaro", "~> 1.3"
+gem "devise", "~> 4.9"
+gem "pundit", "~> 2.5"

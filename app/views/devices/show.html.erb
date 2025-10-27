@@ -1,20 +1,29 @@
-<h2 class="text-xl font-bold mb-4">Device: <%= @device.device_id %></h2>
+<h2 class="text-2xl font-bold mb-4">Device Details: <%= @device.device_id %></h2>
 
-<div class="mb-4">
+<div class="mb-6 space-y-2">
   <p><b>Platform:</b> <%= @device.platform.capitalize %></p>
-  <p><b>Last Seen:</b> <%= @device.last_seen %></p>
+  <p><b>Enrolled:</b> <%= @device.enrolled ? "✅" : "❌" %></p>
+  <p><b>Last Seen:</b> <%= @device.last_seen&.strftime("%Y-%m-%d %H:%M") %></p>
+  <p><b>Metadata:</b></p>
+  <pre class="bg-gray-800 p-2 rounded"><%= JSON.pretty_generate(@device.metadata || {}) %></pre>
 </div>
 
-<h3 class="text-lg mb-3">Uninstall App</h3>
-<%= form_with url: uninstall_enterprise_device_path(@enterprise, @device), method: :post, local: true do |f| %>
-  <%= f.label :package_name, "Package Name", class: "block mb-2" %>
-  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full mb-3" %>
-  <%= f.submit "Uninstall App", class: "bg-red-600 px-4 py-2 rounded" %>
+<hr class="my-6 border-gray-700">
+
+<!-- Uninstall App Form -->
+<h3 class="text-xl font-semibold mb-3">Uninstall App</h3>
+<%= form_with url: uninstall_enterprise_device_path(@enterprise, @device), method: :post, local: true, class: "space-y-2" do |f| %>
+  <%= f.label :package_name, "Package/Bundle ID", class: "block mb-1" %>
+  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full" %>
+  <%= f.submit "Uninstall App", class: "bg-red-600 px-4 py-2 rounded hover:bg-red-700" %>
 <% end %>
 
-<h3 class="text-lg mb-3 mt-6">Install App</h3>
-<%= form_with url: install_enterprise_device_path(@enterprise, @device), method: :post, local: true do |f| %>
-  <%= f.label :package_name, "Package Name", class: "block mb-2" %>
-  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full mb-3" %>
-  <%= f.submit "Install App", class: "bg-green-600 px-4 py-2 rounded" %>
+<!-- Install App Form -->
+<h3 class="text-xl font-semibold mb-3 mt-6">Install App</h3>
+<%= form_with url: install_enterprise_device_path(@enterprise, @device), method: :post, local: true, class: "space-y-2" do |f| %>
+  <%= f.label :package_name, "Package/Bundle ID", class: "block mb-1" %>
+  <%= f.text_field :package_name, class: "bg-gray-800 border border-gray-700 rounded p-2 w-full" %>
+  <%= f.submit "Install App", class: "bg-green-600 px-4 py-2 rounded hover:bg-green-700" %>
 <% end %>
+
+<%= link_to "← Back to Devices", enterprise_devices_path(@enterprise), class: "text-blue-400 mt-4 block" %>

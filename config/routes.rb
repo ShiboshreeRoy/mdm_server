@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,15 +12,22 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-   
-  root "devices#index"
-  #root "enterprises#index"
+  root "home#index"
 
-  resources :enterprises do
-  resources :devices, only: [:index, :show, :new, :create] do
-    post :uninstall, on: :member
-    post :install, on: :member
+  # Admin dashboard
+  namespace :admin do
+    get "/", to: "dashboards#index", as: :dashboard
+    resources :enterprises do
+      resources :devices, only: [:index, :show]
+    end
   end
-end
 
+  # Client dashboard
+  namespace :client do
+    get "/", to: "dashboards#index", as: :dashboard
+    resources :devices, only: [:index, :show] do
+      post :uninstall
+      post :install
+    end
+  end
 end
